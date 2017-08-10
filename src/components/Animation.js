@@ -4,7 +4,7 @@ class Animation extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       url: ' http://placehold.it/500x150'
     };
@@ -19,7 +19,7 @@ class Animation extends React.Component {
           return res.json()
         }
       })
-      .then(result => this.setState({ 
+      .then(result => this.setState({
         url: result.data.fixed_height_downsampled_url
       }));
   }
@@ -27,7 +27,11 @@ class Animation extends React.Component {
   showLoadingBar = () => {
     const progressBar = document.getElementById('progress-bar');
     progressBar.className = 'off on';
-    setTimeout(() => progressBar.className = 'off', 1100);
+    setTimeout(() => progressBar.className = 'off', 600);
+  }
+
+  componentWillUpdate() {
+    this.showLoadingBar()
   }
 
   render() {
